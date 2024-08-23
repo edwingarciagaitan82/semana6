@@ -41,7 +41,7 @@ const tecnologiaVideo = async(req,res)=>{
 const tecnologiasListar = async(req,res) =>{
     const tecnologias = await tecnologieModel.find()
     console.log(tecnologias)
-    res.status(200).json(tecnologias)
+    res.status(200).json( {data : tecnologias})
 }
 
 const tecnologiasGuardar = async(req,res)=>{
