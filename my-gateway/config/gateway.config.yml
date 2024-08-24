@@ -1,0 +1,38 @@
+http:
+  port: 3000
+
+apiEndpoints:
+  api:
+    host: localhost
+
+serviceEndpoints:
+  authService:
+    url: 'http://localhost:3001'
+  crudService:
+    url: 'http://localhost:3002'
+
+policies:
+  - jwt
+  - proxy
+
+pipelines:
+  loginPipeline:
+    apiEndpoints:
+      - api
+    policies:
+      - proxy:
+          action:
+            serviceEndpoint: authService
+            changeOrigin: true
+
+  # crudPipeline:
+  #   apiEndpoints:
+  #     - api
+  #   policies:
+  #     - jwt:
+  #         action:
+  #           secretOrPublicKey: 'palabrasecreta'
+  #     - proxy:
+  #         action:
+  #           serviceEndpoint: crudService
+  #           changeOrigin: true

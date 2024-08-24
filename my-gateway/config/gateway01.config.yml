@@ -1,0 +1,23 @@
+http:
+  port: 3000
+
+apiEndpoints:
+  api:
+    host: localhost
+
+serviceEndpoints:
+  crudService:
+    url: 'http://localhost:3002'
+
+policies:
+  - proxy
+
+pipelines:
+  default:
+    apiEndpoints:
+      - api
+    policies:
+      - proxy:
+          action:
+            serviceEndpoint: crudService
+            changeOrigin: true

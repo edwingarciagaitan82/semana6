@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
-const puerto = 3002
+const puerto = 3005
 const db = require('./config/db')
+const cors = require('cors');
+app.use(cors());
 app.use(express.json())
 app.use("/api/categorias",require('./routes/categoryRoute'))
 app.use("/api/productos", require('./routes/productoRoute'))
