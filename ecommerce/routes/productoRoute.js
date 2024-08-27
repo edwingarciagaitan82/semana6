@@ -3,7 +3,7 @@ const router = express.Router()
 const producto = require('../controllers/productsCtrl') 
 const { check } = require('express-validator')
 const multer = require('multer')
-router.get("/",producto.productosListado)
+router.get("/:page",producto.productosListado)
 router.post("/", producto.productoGuardar )
 router.put("/", [
                 check("nombre", "Registra un nombre Valido").not().isEmpty()

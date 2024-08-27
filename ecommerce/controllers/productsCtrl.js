@@ -3,7 +3,15 @@ const productoModel = require('../models/productSchema')
 const { validationResult } = require('express-validator')
 
 const productosListado = async (req,res) =>{
-    const productos = await productoModel.find()
+    let pagina = 1
+    if(req.params.page)
+        pagina = req.params.page
+    console.log("pagina", pagina)
+    const lote = 4
+    const posicion =  (pagina - 1) * lote
+    //  pagina  1  - 1    lote 4     posicion  0
+    //  pagina 2  -1    lota 4     posicion   4
+    const productos = await productoModel.find().skip(posicion).limit(lote)
     res.status(200).json({ data : productos })
 }
 
